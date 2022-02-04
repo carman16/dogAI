@@ -1,7 +1,7 @@
 import Button from 'components/Button'
-import Logo from 'components/Logo'
 
-import dogScanImg from 'assets/dog-scan.png'
+
+import scanImg from 'assets/scan.png'
 
 import styles from './Home.module.css'
 
@@ -9,12 +9,11 @@ function Home() {
   return (
     <div className={styles.container}>
       <main className={styles.heroContainer}>
-        <Logo className={styles.heroLogo} />
+        
         <section className={styles.hero}>
-          <h1>Dog breed Image Recognition.</h1>
+          <h1>3D Model Creation Price Estimator</h1>
           <p>
-            Recognize over 100 dog breeds by image using Tensorflow.js and
-            Teachable Machine.
+            Create a pricing estimate for 3D Asset creation via a product image.
           </p>
           <Button href="/dash" asLink rounded>
             Get started
@@ -23,7 +22,7 @@ function Home() {
       </main>
       <aside>
         <figure>
-          <img src={dogScanImg} alt="dog" />
+          <img src={scanImg} alt="levar" />
         </figure>
       </aside>
     </div>

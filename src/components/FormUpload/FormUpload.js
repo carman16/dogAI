@@ -6,6 +6,7 @@ import closeSVG from 'assets/close.svg'
 
 import DropContainer from 'components/DropContainer'
 import PredictionResult from 'components/PredictionResult/PredictionResult'
+
 import Loading from 'components/Loading'
 import Preview from 'components/Preview'
 import Button from 'components/Button'
@@ -16,7 +17,7 @@ import styles from './FormUpload.module.css'
 import { useFormUpload } from './useFormUpload'
 
 function FormUpload() {
-  const { file, prediction, description, error, isLoading, onDrop } =
+  const { file, prediction, predictions, description, error, isLoading, onDrop } =
     useFormUpload()
 
   const { getRootProps, getInputProps, isDragActive, isDragReject } =
@@ -40,7 +41,7 @@ function FormUpload() {
 
             {error && (
               <Alert type="danger">
-                Fail to scan image, try again with a different one.
+                Price Range is an Estimation!
               </Alert>
             )}
           </section>
@@ -49,6 +50,7 @@ function FormUpload() {
             <PredictionResult
               prediction={prediction}
               description={description}
+              predictions={predictions}
             />
           )}
         </div>

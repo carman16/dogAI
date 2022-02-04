@@ -29,8 +29,8 @@
   --sz-3xl: 3.5rem;
 
   /* Fonts */
-  --font-title: 'Raleway', Helvetica, sans-serif;
-  --font-body: 'Roboto', Arial, sans-serif;
+  --font-title: 'Overpass', Helvetica, sans-serif;
+  --font-body: 'Overpass', Arial, sans-serif;
 }
 
 html,
@@ -39,7 +39,7 @@ body {
   font-size: var(--text-base);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: var(--amethyst);
+  background-color: var(--purple);
 }
 
 h1,

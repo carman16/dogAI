@@ -1,11 +1,12 @@
 import { useCallback, useState } from 'react'
 
-import { useMLModel } from 'hook/useMLModel'
+import { useMLModel, useList } from 'hook/useMLModel'
 import { useFetch } from 'hook/useFetch'
 
 export function useFormUpload() {
   const [file, setFile] = useState([])
   const [prediction, setPrediction] = useState([])
+  const [predictions, setPredictions] = useState([])
   const [description, setDescription] = useState({})
   const [error, setError] = useState(null)
 
@@ -22,7 +23,21 @@ export function useFormUpload() {
     metadataPath: './model/metadata.json',
   })
 
+  const { predictlist } = useList({
+    modelPath: './model/model.json',
+    metadataPath: './model/metadata.json',
+  })
+
   const { retrieve } = useFetch()
+
+  const handleAll = useCallback(async () => {
+    setPredictions(predictions)
+
+  })
+
+  console.log(prediction)
+ 
+
 
   const handleResults = useCallback(async (data) => {
     setPrediction(data)
@@ -73,8 +88,10 @@ export function useFormUpload() {
 
       const image = document.getElementById('image')
       const mlPrediction = await predict(image)
+      const mlPredictions = await predictlist(image)
 
       await handleResults(mlPrediction)
+      await handleAll(mlPredictions)
     } catch (err) {
       setError(err)
       setStatus(statusType.REJECTED)
@@ -87,6 +104,7 @@ export function useFormUpload() {
     onDrop,
     file,
     prediction,
+    predictions,
     description,
     error,
     isLoading: status === statusType.IDLE,
@@ -94,3 +112,4 @@ export function useFormUpload() {
     isRejected: status === statusType.REJECTED,
   }
 }
+

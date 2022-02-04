@@ -1,12 +1,16 @@
-import track from 'assets/track.svg'
+
 
 import Alert from 'components/Alert/'
 import ProgressBar from 'components/ProgressBar'
+// import { predictions } from 'hook/useMLModel'
 
 import styles from './PredictionResult.module.css'
 
-function PredictionResult({ prediction, description }) {
+// console.log(predictions)
+
+function PredictionResult({ prediction }) {
   const precision = (prediction.probability * 100).toFixed(2)
+ 
 
   return prediction.probability > 0.6 ? (
     <article className={styles.predictions}>
@@ -19,8 +23,8 @@ function PredictionResult({ prediction, description }) {
           'Canid'
         ) : (
           <>
-            <img src={track} alt="dog paw" />
-            Dog
+           
+            Price Range Per Model
           </>
         )}
       </h4>
@@ -29,26 +33,40 @@ function PredictionResult({ prediction, description }) {
       <ProgressBar min="0" max="100" value={precision}>
         {precision.replace('.', ',')} %
       </ProgressBar>
-
-      <p className={styles.description}>
-        {!description.error && !description.desc && <span>Loading ...</span>}
-        {!description.error && description.desc && (
+          <br/>
+            
+     <h4 className={styles.subheading}>
+        {prediction.className !== prediction ? (
           <>
-            {description.desc}
-            <span>
-              See more at{' '}
-              <a href={description.wikiUrl}>{description.wikiUrl}</a>
-            </span>
+        Other    
+        
           </>
+        ) : (
+          prediction.map(({ className, probability}) => (
+            <> {className} {probability} biss </>
+          ))
         )}
-        {description.error && <span>Wikipedia not found.</span>}
-      </p>
+      </h4>
+          
+      
+      
+    
+  
+      
     </article>
-  ) : (
+  )
+
+ 
+  : (
     <Alert type="warning">
-      Fail to identity dog breed, try again with a different image.
+      Rough Estimate Only
     </Alert>
   )
 }
+
+
+
+
+// function otherClasses
 
 export default PredictionResult

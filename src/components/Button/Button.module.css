@@ -1,6 +1,6 @@
 .button {
   display: inline-block;
-  background: var(--yellow);
+  background: var(--red);
   font-weight: 700;
   font-size: var(--text-lg);
   padding: 1rem 3rem;
